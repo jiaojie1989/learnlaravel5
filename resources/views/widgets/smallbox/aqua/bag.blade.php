@@ -1,0 +1,1 @@
+@extends("widgets.smallbox.basic", ["color" => "aqua", "icon" => "ion-bag","data" => $data, "desc" => $desc, "link"  => $link])
