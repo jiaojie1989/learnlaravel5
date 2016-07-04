@@ -18,4 +18,5 @@ return array(
     $vendorDir . '/laravelcollective/html/src/helpers.php',
     $vendorDir . '/laravel/framework/src/Illuminate/Foundation/helpers.php',
     $vendorDir . '/laravel/framework/src/Illuminate/Support/helpers.php',
+    $vendorDir . '/raveren/kint/Kint.class.php',
 );
