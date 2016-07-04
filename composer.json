@@ -8,7 +8,8 @@
         "php": ">=5.5.9",
         "laravel/framework": "5.2.*",
         "almasaeed2010/adminlte": "~2.0",
-        "zofe/rapyd": "2.2.4"
+        "zofe/rapyd": "2.2.4",
+        "raveren/kint": "1.0.10"
     },
     "require-dev": {
         "fzaninotto/faker": "~1.4",
