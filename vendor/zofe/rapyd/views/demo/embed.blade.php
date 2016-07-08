@@ -38,7 +38,7 @@
     Requirements are jquery, riotjs, pjax in your master layout:
     <pre>
     <code>
-        <?php echo htmlentities('<script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+        <?php echo htmlentities('<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/1.12.0/jquery.js"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.pjax/1.9.6/jquery.pjax.min.js"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/riot/2.2.4/riot+compiler.min.js"></script>
         {!! Rapyd::scripts() !!}

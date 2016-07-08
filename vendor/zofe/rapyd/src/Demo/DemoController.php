@@ -370,7 +370,7 @@ class DemoController extends Controller
         $grid->attributes(array("class"=>"table table-striped"));
         $grid->add('id','ID', true)->style("width:70px");
         $grid->add('title','Title', true);
-        $grid->edit('/rapyd-demo/nudeedit', 'Edit','modify|delete');
+        $grid->edit('/rapyd-demo/nudeedit', 'Edit','modify|show|delete');
         $grid->paginate(10);
         return $grid;
     }
@@ -392,6 +392,7 @@ class DemoController extends Controller
     {
         //embed some widgets and isolate the dom using riot & pjax
         $embed1 = \DataEmbed::source('/rapyd-demo/nudegrid', 'embed1')->build();
+        \Kint::dump($embed1);
 
         //if you prefer you can simply use an html tag
         $embed2 = '<dataembed id="embed2" remote="/rapyd-demo/nudeedit?modify=1"></dataembed>';
