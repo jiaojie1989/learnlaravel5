@@ -1,6 +1,6 @@
 <!-- sidebar menu: : style can be found in sidebar.less -->
 <ul class="sidebar-menu">
-    <li class="header">MAIN NAVIGATION</li>
+    @include("layouts.navs.header", ["title" => "MAIN NAVIGATION"])
     <li class="active treeview">
         <a href="#">
             <i class="fa fa-dashboard"></i> <span>Dashboard</span> <i class="fa fa-angle-left pull-right"></i>
@@ -78,12 +78,8 @@
             <li><a href="pages/tables/data.html"><i class="fa fa-circle-o"></i> Data tables</a></li>
         </ul>
     </li>
-    <li>
-        <a href="pages/calendar.html">
-            <i class="fa fa-calendar"></i> <span>Calendar</span>
-            <small class="label pull-right bg-red">3</small>
-        </a>
-    </li>
+    @include("layouts.navs.level1", ["href" => "pages/calendar.html", "name" => "Calendar", "symbol" => "calendar", "num" => 3, "color" => "blue"])
+    @include("layouts.navs.level1", ["name" => "Calendar",  "num" => 124])
     <li>
         <a href="pages/mailbox/mailbox.html">
             <i class="fa fa-envelope"></i> <span>Mailbox</span>

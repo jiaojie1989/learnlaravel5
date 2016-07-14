@@ -12,13 +12,13 @@
                         <h3 class="box-title">Table</h3>
                     </div>
                     <div class="box-body">
-                        {!! $filter !!}
-                        {!! $grid !!}
+                        {!! $embed1 !!}
                     </div>
                 </div>
             </div>
         </div>
     </section>
 </div>
+
 <!-- /.content-wrapper -->
 @stop

@@ -15,4 +15,8 @@ Route::get('/', function () {
     return view('demo');
 });
 
+Route::get("/test2", "TestController@test2");
 Route::get("/test", "TestController@test");
+Route::controller("dd", "\App\Http\Controllers\DemoController");
+
+require_once dirname(__FILE__) . "/rapyd.php";

@@ -25,10 +25,28 @@ class TestController extends Controller {
         $grid->add('pay_id', "Pay Id");
         $grid->paginate(20);
         $grid->attributes(["class" => "table table-bordered table-striped dataTable"]);
-        $grid->edit('/rapyd-demo/edit', 'Edit', 'show|modify');
+        $grid->edit('/rapyd-demo/edit', 'Edit', 'show|modify|delete');
         $grid->link('/rapyd-demo/edit', "New Article", "TR");
-        \Kint::dump($grid);
-        return view('test', compact('grid', 'filter'));
+//        \Kint::dump($grid);
+//        return compact('grid', 'filter');
+        if (isset($_GET["filter"])) {
+            return $filter;
+        }
+        return strval($filter) . strval($grid);
+//        return $grid;
+//        return $grid;
+//        return view('test', compact('grid', 'filter'));
+    }
+
+    public function test2() {
+        //embed some widgets and isolate the dom using riot & pjax
+        $embed1 = \DataEmbed::source('/test', 'embed1')->build();
+
+        //if you prefer you can simply use an html tag
+//        $embed2 = '<dataembed id="embed2" remote="/rapyd-demo/nudeedit?modify=1"></dataembed>';
+//        $embed2 = '<dataembed id="embed2" remote="/test?filter=1"></dataembed>';
+        return view('test', compact('embed1'));
+//        return view('test2', compact('embed1', 'embed2'));
     }
 
 }
