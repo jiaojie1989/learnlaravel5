@@ -10,7 +10,9 @@
         "almasaeed2010/adminlte": "~2.0",
         "zofe/rapyd": "2.2.4",
         "raveren/kint": "1.0.10",
-        "firephp/firephp-core": "v0.4.0"
+        "firephp/firephp-core": "v0.4.0",
+        "albertofem/rsync-lib": "dev-master",
+        "alchemy/zippy": "0.3.5"
     },
     "require-dev": {
         "fzaninotto/faker": "~1.4",

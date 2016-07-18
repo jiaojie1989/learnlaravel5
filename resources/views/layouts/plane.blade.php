@@ -9,9 +9,9 @@
         <!-- Bootstrap 3.3.6 -->
         <link rel="stylesheet" href="bootstrap/css/bootstrap.min.css">
         <!-- Font Awesome -->
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.5.0/css/font-awesome.min.css">
+        <link rel="stylesheet" href="/ajax/libs/font-awesome/4.5.0/css/font-awesome.min.css">
         <!-- Ionicons -->
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/ionicons/2.0.1/css/ionicons.min.css">
+        <link rel="stylesheet" href="/ajax/libs/ionicons/2.0.1/css/ionicons.min.css">
         <!-- Theme style -->
         <link rel="stylesheet" href="dist/css/AdminLTE.min.css">
         <!-- AdminLTE Skins. Choose a skin from the css/skins
@@ -40,7 +40,7 @@
     <body class="hold-transition skin-blue sidebar-mini">
         @yield("body")
         <!-- jQuery 2.2.0 -->
-        <script src="plugins/jQuery/jQuery-2.2.0.min.js"></script>
+        <script src="plugins/jQuery/jquery-2.2.3.min.js"></script>
         <!-- jQuery UI 1.11.4 -->
         <script src="https://code.jquery.com/ui/1.11.4/jquery-ui.min.js"></script>
         <!-- Resolve conflict in jQuery UI tooltip with Bootstrap tooltip -->
@@ -50,7 +50,7 @@
         <!-- Bootstrap 3.3.6 -->
         <script src="bootstrap/js/bootstrap.min.js"></script>
         <!-- Morris.js charts -->
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/raphael/2.1.0/raphael-min.js"></script>
+        <script src="/ajax/libs/raphael/2.1.0/raphael-min.js"></script>
         <script src="plugins/morris/morris.min.js"></script>
         <!-- Sparkline -->
         <script src="plugins/sparkline/jquery.sparkline.min.js"></script>
@@ -60,7 +60,7 @@
         <!-- jQuery Knob Chart -->
         <script src="plugins/knob/jquery.knob.js"></script>
         <!-- daterangepicker -->
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.11.2/moment.min.js"></script>
+        <script src="/ajax/libs/moment.js/2.11.2/moment.min.js"></script>
         <script src="plugins/daterangepicker/daterangepicker.js"></script>
         <!-- datepicker -->
         <script src="plugins/datepicker/bootstrap-datepicker.js"></script>
@@ -77,9 +77,94 @@
         <!-- AdminLTE for demo purposes -->
         <script src="dist/js/demo.js"></script>
 
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.pjax/1.9.6/jquery.pjax.min.js"></script>
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/riot/2.2.4/riot+compiler.min.js"></script>
+        <script src="/ajax/libs/jquery.pjax/1.9.6/jquery.pjax.min.js"></script>
+        <script src="/ajax/libs/riot/2.2.4/riot+compiler.min.js"></script>
+        <script src="plugins/chartjs/Chart.min.js"></script>
         {!! Rapyd::scripts() !!}
         <script>riot.mount("*")</script>
+        <script>
+            console.log(123123123);
+            /* ChartJS
+             * -------
+             * Here we will create a few charts using ChartJS
+             */
+            //--------------
+            //- AREA CHART -
+            //--------------
+            // Get context with jQuery - using jQuery's .get() method.
+
+            var ajaxData = $.get("/hh/data", function (ret) {
+                var dataDetail = [];
+                var dataLine = [];
+                for (ro in ret) {
+                    console.log(ret[ro].date);
+                    dataDetail.push(ret[ro].registers);
+                    dataLine.push(ret[ro].date);
+                }
+                var areaChartOptions = {
+                    //Boolean - If we should show the scale at all
+                    showScale: true,
+                    //Boolean - Whether grid lines are shown across the chart
+                    scaleShowGridLines: true,
+                    //String - Colour of the grid lines
+                    scaleGridLineColor: "rgba(0,0,0,.05)",
+                    //Number - Width of the grid lines
+                    scaleGridLineWidth: 1,
+                    //Boolean - Whether to show horizontal lines (except X axis)
+                    scaleShowHorizontalLines: true,
+                    //Boolean - Whether to show vertical lines (except Y axis)
+                    scaleShowVerticalLines: true,
+                    //Boolean - Whether the line is curved between points
+                    bezierCurve: true,
+                    //Number - Tension of the bezier curve between points
+                    bezierCurveTension: 0.3,
+                    //Boolean - Whether to show a dot for each point
+                    pointDot: false,
+                    //Number - Radius of each point dot in pixels
+                    pointDotRadius: 4,
+                    //Number - Pixel width of point dot stroke
+                    pointDotStrokeWidth: 1,
+                    //Number - amount extra to add to the radius to cater for hit detection outside the drawn point
+                    pointHitDetectionRadius: 20,
+                    //Boolean - Whether to show a stroke for datasets
+                    datasetStroke: true,
+                    //Number - Pixel width of dataset stroke
+                    datasetStrokeWidth: 3,
+                    //Boolean - Whether to fill the dataset with a color
+                    datasetFill: true,
+                    //String - A legend template
+                    legendTemplate: "<ul class=\"<%=name.toLowerCase()%>-legend\"><% for (var i=0; i<datasets.length; i++){%><li><span style=\"background-color:<%=datasets[i].lineColor%>\"></span><%if(datasets[i].label){%><%=datasets[i].label%><%}%></li><%}%></ul>",
+                    //Boolean - whether to maintain the starting aspect ratio or not when responsive, if set to false, will take up entire container
+                    maintainAspectRatio: true,
+                    //Boolean - whether to make the chart responsive to window resizing
+                    responsive: true,
+                };
+                var areaChartData = {
+//                labels: ["January", "February", "March", "April", "May", "June", "July"],
+                    labels: dataLine,
+                    datasets: [
+                        {
+                            label: "Electronics",
+                            fillColor: "rgba(210, 214, 222, 1)",
+                            strokeColor: "rgba(210, 214, 222, 1)",
+                            pointColor: "rgba(210, 214, 222, 1)",
+                            pointStrokeColor: "#c1c7d1",
+                            pointHighlightFill: "#fff",
+                            pointHighlightStroke: "rgba(220,220,220,1)",
+//                        data: [65, 59, 80, 81, 56, 55, 40]
+                            data: dataDetail
+                        }
+                    ]
+                };
+                //-------------
+                //- LINE CHART -
+                //--------------
+                var lineChartCanvas = $("#lineChart").get(0).getContext("2d");
+                var lineChart = new Chart(lineChartCanvas);
+                var lineChartOptions = areaChartOptions;
+                lineChartOptions.datasetFill = false;
+                lineChart.Line(areaChartData, lineChartOptions);
+            });
+        </script>
     </body>
 </html>

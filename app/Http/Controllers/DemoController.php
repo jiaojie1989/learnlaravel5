@@ -18,5 +18,7 @@ class DemoController extends Controller {
     public function getIndex() {
         
     }
+    
+    public function test() {}
 
 }

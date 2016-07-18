@@ -5,8 +5,25 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Http\Requests;
 use App\Models\Stp\PayOrder;
+use App\Models\FinanceApp\AndroidPush;
 
 class TestController extends Controller {
+
+    public function chartDemo() {
+        $datas = AndroidPush::all(["date", "push", "average_rate", "registers"]);
+        $datas = $datas->toArray();
+        $datas = array_reverse($datas);
+        $datas = array_slice($datas, 0, 50);
+        $datas = array_reverse($datas);
+        return $datas;
+        var_dump($datas);
+        exit;
+        return view("chart", ["data" => $data]);
+    }
+
+    public function chart() {
+        return view("chart");
+    }
 
     public function test() {
 //        return view("welcome");
