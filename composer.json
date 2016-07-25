@@ -12,7 +12,9 @@
         "raveren/kint": "1.0.10",
         "firephp/firephp-core": "v0.4.0",
         "albertofem/rsync-lib": "dev-master",
-        "alchemy/zippy": "0.3.5"
+        "alchemy/zippy": "0.3.5",
+        "predis/predis": "~1.0",
+        "guzzlehttp/guzzle": "6.2.1"
     },
     "require-dev": {
         "fzaninotto/faker": "~1.4",

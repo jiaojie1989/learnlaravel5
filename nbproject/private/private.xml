@@ -3,18 +3,20 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/data/projects/php/learnlaravel5/vendor/zofe/rapyd/src/Widget.php</file>
-            <file>file:/data/projects/php/learnlaravel5/resources/views/layouts/nav.blade.php</file>
-            <file>file:/data/projects/php/learnlaravel5/vendor/zofe/rapyd/src/DataGrid/DataGrid.php</file>
-            <file>file:/data/projects/php/learnlaravel5/config/app.php</file>
-            <file>file:/data/projects/php/learnlaravel5/vendor/zofe/rapyd/src/RapydServiceProvider.php</file>
-            <file>file:/data/projects/php/learnlaravel5/vendor/zofe/rapyd/views/datagrid.blade.php</file>
-            <file>file:/data/projects/php/learnlaravel5/resources/views/layouts/left.blade.php</file>
-            <file>file:/data/projects/php/learnlaravel5/resources/views/test.blade.php</file>
-            <file>file:/data/projects/php/learnlaravel5/app/Http/Controllers/TestController.php</file>
-            <file>file:/data/projects/php/learnlaravel5/vendor/laravel/framework/src/Illuminate/Foundation/AliasLoader.php</file>
-            <file>file:/data/projects/php/learnlaravel5/resources/views/contents/main.blade.php</file>
-            <file>file:/data/projects/php/learnlaravel5/app/Http/routes.php</file>
+            <file>file:/data/projects/php/learnlaravel5/vendor/laravel/framework/src/Illuminate/Console/Scheduling/Schedule.php</file>
+            <file>file:/data/projects/php/learnlaravel5/app/Http/Middleware/RedirectIfAuthenticated.php</file>
+            <file>file:/data/projects/php/learnlaravel5/app/Console/Kernel.php</file>
+            <file>file:/data/projects/php/learnlaravel5/app/Http/Controllers/DemoController.php</file>
+            <file>file:/data/projects/php/learnlaravel5/app/Console/Commands/HqHkUpdate.php</file>
+            <file>file:/data/projects/php/learnlaravel5/app/Policies/TestPolicy.php</file>
+            <file>file:/data/projects/php/learnlaravel5/app/Console/Commands/Inspire.php</file>
+            <file>file:/data/projects/php/learnlaravel5/config/queue.php</file>
+            <file>file:/data/projects/php/learnlaravel5/vendor/laravel/framework/src/Illuminate/Queue/README.md</file>
+            <file>file:/data/projects/php/learnlaravel5/vendor/laravel/framework/src/Illuminate/Auth/Access/HandlesAuthorization.php</file>
+            <file>file:/data/projects/php/learnlaravel5/app/Console/Commands/HqCnUpdate.php</file>
+            <file>file:/data/projects/php/learnlaravel5/vendor/laravel/framework/src/Illuminate/Queue/QueueServiceProvider.php</file>
+            <file>file:/data/projects/php/learnlaravel5/app/Jobs/SendReminderEmail.php</file>
+            <file>file:/data/projects/php/learnlaravel5/app/Console/Commands/HqUsUpdate.php</file>
         </group>
     </open-files>
 </project-private>

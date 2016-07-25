@@ -12,7 +12,7 @@ class Inspire extends Command
      *
      * @var string
      */
-    protected $signature = 'inspire';
+    protected $signature = 'inspire1';
 
     /**
      * The console command description.
@@ -28,6 +28,17 @@ class Inspire extends Command
      */
     public function handle()
     {
+//        sleep(50);
+        $pid = pcntl_fork();
+        if ($pid) {
+            var_dump("Succ Child");
+            var_dump($pid);
+            exit();
+        } else {
+            var_dump("Erro Child");
+            var_dump($pid);
+            exit;
+        }
         $this->comment(PHP_EOL.Inspiring::quote().PHP_EOL);
     }
 }
