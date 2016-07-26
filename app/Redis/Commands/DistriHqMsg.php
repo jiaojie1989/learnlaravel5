@@ -42,7 +42,7 @@ local hq_queue = "queue:hq:common";
 local hq_5min_queue = "queue:hq:5min";
 local key_symbol = "hash:symbol:price:"..symbol;
 
-redis.call("SELECT", 4);
+--redis.call("SELECT", 4);
 
 if (negative == nil or negative == "0") then
     negative = 0;
