@@ -29,11 +29,16 @@ class Client {
     protected static $instance;
     protected $redis;
 
+    //172.16.7.27
+    //127.0.0.1
+    // rm7595.eos.grid.sina.com.cn 
+    // rm8091.eos.grid.sina.com.cn
+    // rm8092.eos.grid.sina.com.cn
     protected function __construct() {
         $this->redis = new RedisClient(['host' => '172.16.7.27', 'port' => 6379], ['profile' => function ($options) {
                 $profile = $options->getDefault('profile');
                 $profile->defineCommand('setQueue', '\\App\\Redis\\Commands\\DistriHqMsg');
-//                $profile->defineCommand("consumePriceCompareQueue", "");
+                $profile->defineCommand("consumePriceCompareQueue", "\\App\\Redis\\Commands\\ComparePrice");
 //                $profile->defineCommand("consume5MinQueue", "");
 //                $profile->defineCommand("distributeNotify", "");
                 return $profile;

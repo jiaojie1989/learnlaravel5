@@ -18,6 +18,8 @@ class Kernel extends ConsoleKernel {
         Commands\HqCnUpdate::class,
         Commands\HqUsUpdate::class,
         Commands\HqHkUpdate::class,
+        Commands\DealPriceQueue::class,
+        Commands\Faker::class,
     ];
 
     /**
