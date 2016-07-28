@@ -28,7 +28,7 @@ class DealPriceQueue extends Command {
      * @var \App\Redis\Client 
      */
     protected $redis;
-    
+
     /**
      *
      * @var \HRTime\StopWatch 
@@ -52,7 +52,7 @@ class DealPriceQueue extends Command {
      * @return mixed
      */
     public function handle() {
-        for(;;) {
+        for (;;) {
             $data = $this->redis->rpop("queue:hq:common");
             if (empty($data)) {
                 exit("HQ Queue Empty");
@@ -65,7 +65,8 @@ class DealPriceQueue extends Command {
             dump($this->redis->consumePriceCompareQueue($data["symbol"], $data["time"], $data["price"], $data["rate"], $data["negative"]));
             $this->watch->stop();
             var_dump($this->watch->getLastElapsedTime(Unit::MILLISECOND));
-            var_dump($data);exit;
+            var_dump($data);
+            exit;
         }
     }
 
