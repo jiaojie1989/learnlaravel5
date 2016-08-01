@@ -35,7 +35,7 @@ class HqCnUpdate extends Command {
      * Time Setting
      */
     const START_TIME = "09:30:00";
-    const END_TIME = "16:00:00";
+    const END_TIME = "15:00:00";
     const TIME_DIVER = 5399;
     const TIME_HIGHER_THAN = 7200;
 
@@ -70,7 +70,7 @@ class HqCnUpdate extends Command {
         foreach ($symbolList as $symbol) {
             array_push($symbols, $symbol["symbol"]);
         }
-        $arrs = array_chunk($symbols, 200);
+        $arrs = array_chunk($symbols, 500);
         foreach ($arrs as $arr) {
             if (pcntl_fork() > 0) {
                 continue;
@@ -97,6 +97,9 @@ class HqCnUpdate extends Command {
                 return $match;
             };
             while (true) {
+                if (date("H") >= 15) {
+                    exit("Child " . getmypid() . ", Time Now ". date("Y-m-d H:i:s") . ", Stop Time Arrived!\n");
+                }
                 $text = iconv("gbk", "utf-8", $func($list));
                 $text = $filter($text);
 //            var_dump($text);
@@ -120,7 +123,7 @@ class HqCnUpdate extends Command {
         }
         $status = null;
         pcntl_wait($status);
-        var_dump("stop the master");
+        exit("Got CHLD Signal, Parent " . getmypid() . " Exit.\n");
     }
 
     private function getSecondsOrderSerial($time) {

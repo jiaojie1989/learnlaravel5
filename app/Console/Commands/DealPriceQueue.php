@@ -55,18 +55,21 @@ class DealPriceQueue extends Command {
         for (;;) {
             $data = $this->redis->rpop("queue:hq:common");
             if (empty($data)) {
-                exit("HQ Queue Empty");
-            }
-            $data = json_decode($data, true);
-            if ("sh600097" != $data["symbol"]) {
+                dump("[Warn] [" . date("Y-m-d H:i:s") . "] HQ Queue Empty");
+                sleep(1);
                 continue;
             }
+            $data = json_decode($data, true);
+//            if ("sz002304" != $data["symbol"]) {
+//                continue;
+//            }
             $this->watch->start();
             dump($this->redis->consumePriceCompareQueue($data["symbol"], $data["time"], $data["price"], $data["rate"], $data["negative"]));
             $this->watch->stop();
-            var_dump($this->watch->getLastElapsedTime(Unit::MILLISECOND));
-            var_dump($data);
-            exit;
+//            var_dump($this->watch->getLastElapsedTime(Unit::MILLISECOND));
+//            var_dump(date("Y-m-d H:i:s", $data["time"]) . "----" . date("Y-m-d H:i:s"));
+//            var_dump($data);
+//            exit;
         }
     }
 

@@ -68,7 +68,7 @@ class Faker extends Command {
                 continue;
             }
 //            $this->stopWatch->start();
-            $this->redis->zadd("set:high:price:sh600097", $rank, $userInfo);
+            $this->redis->zadd("set:high:price:sz002304", $rank, $userInfo);
 //            $this->stopWatch->stop();
 //            VarDumper::dump($this->stopWatch->getLastElapsedTime(Unit:: MILLISECOND));
 //            VarDumper::dump(["a" => 1]);
