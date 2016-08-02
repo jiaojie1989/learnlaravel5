@@ -53,21 +53,28 @@ class DealPriceQueue extends Command {
      */
     public function handle() {
         for (;;) {
-            $data = $this->redis->rpop("queue:hq:common");
-            if (empty($data)) {
+            $dataStr = $this->redis->rpop("queue:hq:common");
+            if (empty($dataStr)) {
                 dump("[Warn] [" . date("Y-m-d H:i:s") . "] HQ Queue Empty");
                 sleep(1);
                 continue;
             }
-            $data = json_decode($data, true);
+            $data = json_decode($dataStr, true);
 //            if ("sz002304" != $data["symbol"]) {
 //                continue;
 //            }
             $this->watch->start();
-            dump($this->redis->consumePriceCompareQueue($data["symbol"], $data["time"], $data["price"], $data["rate"], $data["negative"]));
+            $num = $this->redis->consumePriceCompareQueue($data["symbol"], $data["time"], $data["price"], $data["rate"], $data["negative"]);
+//            dump($num);
+            if (intval($num) > 9999) {
+                dump($this->redis->rpush("queue:hq:common", $dataStr));
+            }
+            
             $this->watch->stop();
 //            var_dump($this->watch->getLastElapsedTime(Unit::MILLISECOND));
-//            var_dump(date("Y-m-d H:i:s", $data["time"]) . "----" . date("Y-m-d H:i:s"));
+            if (!empty($num)) {
+                var_dump($num . " $ {$data["symbol"]} $" . date("Y-m-d H:i:s", $data["time"]) . "----" . date("Y-m-d H:i:s"));
+            }
 //            var_dump($data);
 //            exit;
         }
