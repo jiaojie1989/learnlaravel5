@@ -54,11 +54,11 @@ class DealMsgQueue extends Command {
      *
      * @var array 
      */
-    protected $appList;
+    protected $appList = array();
 
     const NOTIFY_LIST_KEY = "list:notify:all";
     const APP_SETTINGS = "app:setting:%s";
-    const O_CLIENT_MAX_IDLE_TIME = 10;
+    const O_CLIENT_MAX_IDLE_TIME = 30;
     const MSG_PUSH_LIST_KEY = "list:push";
 
     public function __construct() {
@@ -75,10 +75,10 @@ class DealMsgQueue extends Command {
             $data = json_decode($data, true);
             list($appid, $sid) = explode(":", $data["subinfo"]);
             $data["sid"] = $sid;
-            dump($appid, $sid);
+//            dump($appid, $sid);
             $this->pushMessageQueue($appid, $data);
-            dump($data);
-            exit;
+//            dump($data);
+//            exit;
         }
     }
 
@@ -88,7 +88,7 @@ class DealMsgQueue extends Command {
     }
 
     protected function getAppDistributeConn($appid) {
-        if (array_key_exists($appid, $this->appList) && (time() - $this->appList["ltime"] < self::O_CLIENT_MAX_IDLE_TIME)) {
+        if (array_key_exists($appid, $this->appList) && (time() - $this->appList[$appid]["ltime"] < self::O_CLIENT_MAX_IDLE_TIME)) {
             
         } else {
             $this->appList[$appid]["conn"] = $this->connectedRedis($appid);
@@ -99,7 +99,7 @@ class DealMsgQueue extends Command {
 
     protected function connectedRedis($appid) {
         $setting = $this->redis->hGetAll(sprintf(self::APP_SETTINGS, $appid));
-        if (is_array($setting)) {
+        if (is_array($setting) && !empty($setting)) {
             return new OClient([
                 "host" => $setting["host"],
                 "port" => $setting["port"],
