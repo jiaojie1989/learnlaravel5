@@ -70,7 +70,11 @@ class EventTrigger extends Command {
                 $key = sprintf(self::SETTING_KEY, $data["type"], $data["symbol"]);
                 $val = $data["appid"] . ":" . $data["sid"];
                 $score = $data["target"];
-                $this->redisClient->zAdd($key, $score, $val);
+                if ($score) {
+                    $this->redisClient->zAdd($key, $score, $val);
+                } else {
+                    $this->redisClient->zRem($key, $val);
+                }
             } else {
                 $this->redisClient->ping();
             }
